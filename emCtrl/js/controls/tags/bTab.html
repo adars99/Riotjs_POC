@@ -1,0 +1,45 @@
+//--panel--//
+<em-bpanel >
+	<h3>{opts.title}</h3>
+     <p>{opts.content}</p>
+	<script>
+		this.mixin('emCtrlMixins')
+	</script>
+</em-bpanel>
+//--panel--//
+<em-bfrom >
+	<h3>{opts.title}</h3>
+	 <em-text title="Enter value" placeholder="Enter value"></em-text>
+	 <em-btn text="click it"></em-btn>
+	<script>
+		this.mixin('emCtrlMixins')
+	</script>
+</em-bfrom>
+//--item--//
+<em-blist>
+	<ul class="{opts.cssclassul}">
+		<li class='{ active: active}{opts.cssclassli}' each='{opts.list}'>
+				<a data-toggle="tab" href="#{id}">{title}</a>
+		</li>
+	</ul>
+	<script>
+		this.mixin('emCtrlMixins')
+	</script>
+</em-blist>
+//--tab--/
+<em-btab>
+	<em-blist cssclassul='nav nav-tabs' toggle='tab' list='{opts.list}' ></em-blist>
+	 <div class="tab-content">
+		 <div   id='{id}' class='tab-pane fade {active in: active}'   each='{opts.list}'>
+			 <span if={ contentType=='em-bpanel' }>
+				<div riot-tag="em-bpanel" title="{title}"  content="{content}"></div>
+			 </span>
+			 <span if={ contentType=='em-bfrom' }>
+				<div riot-tag="em-bfrom" title="{title}"  ></div>
+			 </span>
+		 </div>
+	 </div>
+	<script>
+		this.mixin('emCtrlMixins')
+	</script>
+</em-btab>

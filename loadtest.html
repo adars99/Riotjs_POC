@@ -1,0 +1,69 @@
+<html
+<head>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>	
+	<script src="node_modules/requirejs/require.js"></script>
+	<script src="emCtrl/emr.js"></script>
+	<script src="emCtrl/emCtrl.js"></script>
+	<script src="http://cdn.kendostatic.com/2012.2.710/js/kendo.all.min.js"></script>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css"/>
+</head>
+<body> 
+	<div id="main" class="container" style="margin-top:3px;">
+		<div class="row">
+			<div class="col-md-6">
+				ref: <a href="http://jsfiddle.net/eetw7ntb/">Here</a>
+				Riot <strong id="timer1"></strong>
+				<em-btn id='btn1'></em-btn>
+				<em-testlist id="emlist1" ></em-testlist>
+			</div>
+			<div class="col-md-6">
+				ref: <a href="http://jsfiddle.net/brianmfranklin/w674Lv7p/">Here</a>
+				React <strong id="timer2"></strong>
+				<div id="listView" ></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var list=[];
+		var emList ={};
+		$(document).ready(function(){
+			var limit =5000;
+			while(limit>0){
+				list.push("Item"+limit);
+				limit--;
+			}
+			em.init(function(){
+				var btn1=  em.getElement('btn1');
+					//react--
+					var x2 = new Date().getTime();
+						require(['EM.React'],function(){
+							 setTimeout( function() {
+					        $('#timer2').html( ' -  took ' + ( new Date().getTime() - x2 ) + 'ms');
+					      }.bind( this ),0);
+					});
+					//riot--
+					em.required('EM.TestList',function(){
+						var x1 = new Date().getTime();
+				         emList = riot.mount('#emlist1',{
+				           list:list.reverse()
+				        });
+						
+						  setTimeout( function() {
+					        $('#timer1').html( ' -  took ' + ( new Date().getTime() - x1 ) + 'ms');
+					      }.bind( this ),0);
+				    });	
+					
+					btn1.setOpts({text:'update Riot',onclick:function(){
+						var x = new Date().getTime();	
+						emList[0].setOpts({list:list.reverse()},true);
+						 setTimeout( function() {
+					        $('#timer1').html( ' -  took ' + ( new Date().getTime() - x ) + 'ms');
+					      }.bind( this ),0);
+					}},true);
+					
+			});
+		}); 
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<em-panel>
+    <div class="panel panel-default">
+  <div class="panel-body">
+  <yield/>
+  </div></div>
+  <script>
+    this.mixin('emCtrlMixins')
+  </script>
+</em-panel>
+<em-btn>
+  <a class="btn btn-info" onclick={ opts.onclick } >{opts.text}</a>
+  <script>
+  this.mixin('emCtrlMixins')
+   if(window.angular != undefined){
+      if(this.opts.onclick != undefined && angular.element(this.root).scope() != undefined)
+      this.setOpts({onclick:angular.element(this.root).scope()[this.opts.onclick]},true);
+  }
+  </script>
+</em-btn>
+<em-text><label>{opts.title}</label>
+  <input class="form-control" type="text" value={opts.text} onChange={ edit } placeholder={opts.placeholder} />
+  <script>
+  this.mixin('emCtrlMixins')
+  edit(e) { 
+      var updateVal = {text:(e.target || e.srcElement).value}
+      this.setOpts( updateVal,true);
+     if(window.angular != undefined){
+        this.updateScope(angular.element((e.target || e.srcElement)));
+       }
+    }
+    </script>
+</em-text>
+<em-del>
+  <a class="glyphicon glyphicon-remove pull-right"  onclick={parent.removeItem } value={opts.val}  ></a>
+  <script>
+  this.mixin('emCtrlMixins')
+  </script>
+</em-del>

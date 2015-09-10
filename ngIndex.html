@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="node_modules/angular/angular.min.js"></script>	
+		<script src="node_modules/angular-route/angular-route.min.js"></script>
+		<script src="/node_modules/riot/riot.js"></script>
+		<script src="node_modules/requirejs/require.js"></script>
+		<script src="emCtrl/emr.js"></script>
+		<script src="emCtrl/emCtrl.js"></script>
+		<script src="scripts/ngdemo.js"></script>
+
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css"/>
+		
+	</head>
+	<body>
+		<div ng-app="emCtrlDemo" ng-controller="MainCtrl" class="container" style="margin-top:3px;"> 
+			<ng-view></ng-view>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<html
+<head>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>	
+	<script src="node_modules/requirejs/require.js"></script>
+	<script src="emCtrl/emr.js"></script>
+	<script src="emCtrl/emCtrl.js"></script>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css"/>
+</head>
+<body> 
+	<div id="main" class="container" style="margin-top:3px;">
+		<em-panel>
+			<em-btab id="btab1"></em-btab>
+		</em-panel>
+		<em-panel>
+			<em-bpanel title="Header text" content="Content text is the body of this panel"></em-bpanel>
+		</em-panel>
+		<em-panel>
+			<em-bfrom title="Header text of the from" ></em-bfrom>
+		</em-panel>
+		<em-panel>
+			<h3>List</h3>
+			<em-blist id="blist1" title="Header text of the from" ></em-bfrom>
+		</em-panel>
+	</div>
+	<script>
+		$(document).ready(function(){
+			em.init();
+		    em.required('EM.BTab',function(){
+		        var elBTab = em.getElement('btab1');
+		        elBTab.setOpts({
+		           list:[{id:'t1',title:'Tab1' , content:'Something in tab1' , contentType:'em-bpanel' },
+		               {id:'t2',title:'Tab2' , content:'Something in tab2',active:true, contentType:'em-bfrom' },
+		               {id:'t3',title:'Tab3' , content:'Something in tab3', contentType:'em-bpanel' }]
+		        },true);
+				var blist = em.getElement('blist1');
+				blist.setOpts({list:[{id:1,title:'One'},{id:2,title:'Two'},{id:3,title:'Three'}]},true);
+		    });	
+		}); 
+</script>
+</body>
+</html>
